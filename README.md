@@ -1,4 +1,8 @@
 # scribere
+[![Ci](https://img.shields.io/circleci/project/github/ricveal/scribere.svg)](https://circleci.com/gh/ricveal/scribere)
+[![Version](https://img.shields.io/npm/v/scribere.svg)](https://www.npmjs.com/package/scribere)
+[![License](https://img.shields.io/npm/l/scribere.svg)](https://www.npmjs.com/package/scribere)
+[![Downloads](https://img.shields.io/npm/dm/scribere.svg)](https://www.npmjs.com/package/scribere)
 
 > scribĕre, escribir en latín
 
