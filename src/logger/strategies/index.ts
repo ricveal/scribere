@@ -1,0 +1,1 @@
+export { ConsoleLoggerStrategy } from './consoleLoggerStrategy'
