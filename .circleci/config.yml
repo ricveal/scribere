@@ -76,12 +76,12 @@ workflows:
           requires:
             - lint
             - test
-      - deploy:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              only:
-                - master
+      # - deploy:
+      #     requires:
+      #       - build
+      #     filters:
+      #       tags:
+      #         only: /^v.*/
+      #       branches:
+      #         only:
+      #           - master
