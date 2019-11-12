@@ -11,13 +11,13 @@ export interface ILogger {
 
   strategy: LoggerStrategy
 
-  log: (msg: unknown) => void
+  log: (...args: any[]) => void
 
-  debug: (msg: unknown) => void
+  debug: (...args: any[]) => void
 
-  warn: (msg: unknown) => void
+  warn: (...args: any[]) => void
 
-  error: (msg: unknown) => void
+  error: (...args: any[]) => void
 }
 
 export interface LoggerStrategy {
