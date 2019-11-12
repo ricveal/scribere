@@ -1,4 +1,5 @@
 # scribere
+
 [![Ci](https://img.shields.io/circleci/project/github/ricveal/scribere.svg)](https://circleci.com/gh/ricveal/scribere)
 [![Version](https://img.shields.io/npm/v/scribere.svg)](https://www.npmjs.com/package/scribere)
 [![License](https://img.shields.io/npm/l/scribere.svg)](https://www.npmjs.com/package/scribere)
@@ -13,13 +14,13 @@ Librería _core_ logger para ser empleada en proyectos con tecnología Javascrip
 La principal interfaz de la librería es la clase Logger, que debe ser instanciada. No se implementa un patrón singleton, por lo que en un mismo contexto, puedes tener varias instancias funcionando configuradas de diferente forma.
 
 ```javascript
-const logger = new Logger()
+const logger = new Logger();
 ```
 
 El logger trabaja con 4 niveles de severidad:
 
 ```javascript
-const levels = ['log', 'debug', 'warn', 'error']
+const levels = ["log", "debug", "warn", "error"];
 ```
 
 Cada instancia del logger cuenta con 4 métodos (uno para cada nivel de severidad) que permiten _loguear_ mensajes.
@@ -35,6 +36,7 @@ Además, el logger cuenta con 3 propiedades adicionales:
 - `strategy`: Define realmente que es lo que va a pasar cuando se vaya a pintar una traza. La idea es que puedas emplear la estrategia dada por el core o crear tu propia estrategia que te permita hacer otra clase de funcionalidad, por ejemplo, subir las trazas a un servidor. Es una instancia de una clase que implemente la interfaz `LoggerStrategy`. Puedes ver más información sobre este aspecto más adelante.
 
 Estas 3 propiedades pueden definirse a la hora de instanciar el logger a través del constructor:
+
 - `options`: Define el prefijo y la severidad. Por defecto es este objeto:
 
 ```javascript
@@ -47,7 +49,7 @@ Estas 3 propiedades pueden definirse a la hora de instanciar el logger a través
 - `strategy`: Define la estrategia y por defecto es `ConsoleLoggerStrategy` que a grandes rasgos, saca por consola el mensaje que deseemos, ajustándolo tanto a severidad como formateándolo con el prefijo: `PREFIX :: LEVEL :: data`
 
 ```javascript
-const loggerWithOptions = new Logger(options)
+const loggerWithOptions = new Logger(options);
 ```
 
 Estas propiedades se pueden cambiar una vez instanciado el logger ya que son accesibles.
@@ -82,7 +84,7 @@ class CustomStrategy implements LoggerStrategy {
 Una vez creada una estrategia, deberás indicar que quieres emplearla en el momento de instanciar el logger:
 
 ```javascript
-const loggerWithCustomStrategy = new Logger(options, new CustomStrategy())
+const loggerWithCustomStrategy = new Logger(options, new CustomStrategy());
 ```
 
 ## Comenzando 🚀
@@ -90,7 +92,6 @@ const loggerWithCustomStrategy = new Logger(options, new CustomStrategy())
 _Siguiendo estos pasos podrás tener una copia del proyecto en funcionamiento en tu máquina local._
 
 Mira **Deployment** para conocer como desplegar el proyecto.
-
 
 ### Pre-requisitos 📋
 
@@ -112,7 +113,6 @@ yarn test
 
 Por debajo, estarás ejecutando [jest](https://jestjs.io/) por lo que puedes añadir los parámetros que desees.
 
-
 ### Y las pruebas de estilo de codificación ⌨️
 
 Utilizamos [eslint](https://eslint.org/) para asegurar la calidad del código y que sea homogéneo entre diferentes desarrolladores.
@@ -129,18 +129,18 @@ yarn lint:fix
 
 ## Construido con 🛠️
 
-* [Typescript](https://www.typescriptlang.org/)
-* [Jest](https://jestjs.io/)
-* [Eslint](https://eslint.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Jest](https://jestjs.io/)
+- [Eslint](https://eslint.org/)
 
 ## Contribuyendo 🖇️
 
-Por favor lee el [CONTRIBUTING.md](https://gitlab.com/minsait-front-vll/logger/blob/develop/CONTRIBUTING.md) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
+Por favor lee el [CONTRIBUTING.md](https://github.com/ricveal/scribere/blob/master/CONTRIBUTING.md) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
 
 ## Versionado 📌
 
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://gitlab.com/minsait-front-vll/logger/-/tags).
+Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/ricveal/scribere/tags).
 
 ## Autores ✒️
 
-* **Ricardo Vega Alonso** - [ricveal](https://github.com/ricveal)
+- **Ricardo Vega Alonso** - [ricveal](https://github.com/ricveal)
