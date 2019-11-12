@@ -1,6 +1,6 @@
 {
   "name": "scribere",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Logger core to be used in Javascript application",
   "main": "dist/index.js",
   "scripts": {
@@ -10,7 +10,9 @@
     "test": "jest",
     "deploy": "npm publish"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "Ricardo Vega Alonso <ricveal@gmail.com>",
   "license": "ISC",
   "devDependencies": {
