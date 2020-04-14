@@ -1,6 +1,6 @@
 {
   "name": "scribere",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Logger core to be used in Javascript application",
   "main": "dist/index.js",
   "scripts": {
