@@ -21,13 +21,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
       - name: Build
-        run: npm run build --if-present
+        run: yarn build --if-present
       - name: Tests
-        run: npm test
+        run: yarn test
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm run semantic-release
+        run: yarn semantic-release
