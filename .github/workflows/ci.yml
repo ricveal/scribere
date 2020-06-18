@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Build
-        run: yarn build --if-present
+        run: yarn build
       - name: Tests
         run: yarn test
       - name: Release
