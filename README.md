@@ -109,6 +109,68 @@ momento de instanciar el logger:
 const loggerWithCustomStrategy = new Logger(options, new CustomStrategy())
 ```
 
+### Uso con frameworks SPA
+
+El diseño de `scribere` pretende crear un logger muy sencillo y agnóstico del
+framework SPA empleado. A continuación, se exponen algunas posibles
+integraciones con frameworks SPA:
+
+#### Vue
+
+- src |-- main.js |-- logger |-- index.js |-- install.js
+
+`index.js`
+
+```js
+import install from './install'
+
+const Log4Vue = {installed: false}
+Log4Vue.install = install
+
+export default Log4Vue
+```
+
+`install.js`
+
+```js
+import {Logger} from 'scribere'
+
+export default function install(Vue, options = undefined) {
+  if (this.installed) return
+  const logger = options ? new Logger(options) : new Logger()
+  // The logger will be accesible in this.$console
+  Vue.prototype.$console = logger
+  Vue.console = logger
+  window.logger = logger
+  this.installed = true
+}
+```
+
+Esta implementación del `logger` sigue el patrón
+"[plugin](https://es.vuejs.org/v2/guide/plugins.html)" y por tanto, debe
+declararse antes de iniciar la aplicación:
+
+`main.js`
+
+```js
+import Vue from 'vue'
+import VueLogger from './logger'
+
+Vue.use(VueLogger)
+
+new Vue({
+  //... opciones
+})
+```
+
+Opcionalmente puede pasar las opciones por defecto:
+
+```js
+Vue.use(VueLogger, {
+  severity: 2,
+})
+```
+
 ## Comenzando 🚀
 
 _Siguiendo estos pasos podrás tener una copia del proyecto en funcionamiento en
