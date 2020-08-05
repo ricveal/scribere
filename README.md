@@ -218,6 +218,81 @@ Vue.use(VueLogger, {
 })
 ```
 
+#### Angular
+
+Aunque en Angular podríamos seguir estrategias similares a otros frameworks
+(especialmente la dada para React), creo que el patrón que más se acerca a la
+filosofía "Angular" es implementar este _logger_ como un servicio.
+
+Para ello:
+
+```ts
+import {Injectable} from '@angular/core'
+import {Logger, ILogger, LoggerOptions} from 'scribere'
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LoggerService {
+  private _instance: ILogger
+
+  constructor() {
+    const options: LoggerOptions = {
+      severity: 2,
+    }
+    this._instance = new Logger(options)
+  }
+
+  debug(...args: any[]) {
+    return this._instance.debug(...args)
+  }
+  error(...args: any[]) {
+    return this._instance.error(...args)
+  }
+  log(...args: any[]) {
+    return this._instance.log(...args)
+  }
+  warn(...args: any[]) {
+    return this._instance.warn(...args)
+  }
+}
+```
+
+Aunque esta es la forma más sencilla de implementarlo, puede que veas necesario
+inyectar la opciones en vez de definirlas en el constructor. Para ello, creo que
+la mejor manera sería emplear el mecanismo de inyección de Angular y
+"providers".
+
+La idea de este README no es entrar en profundidad en mecanismos específicos de
+ningún framework, en este caso Angular pero la implementación sería algo tal
+que:
+
+```ts
+export const LOGGER_CONFIG = new InjectionToken<LoggerOptions>('app.logger');
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LoggerService {
+  ...
+
+  constructor(@Inject(LOGGER_CONFIG) options: LoggerOptions) {
+    this._instance = new Logger(options);
+  }
+
+  ...
+
+}
+```
+
+```ts
+@NgModule({
+...
+providers: [LoggerService, { provide: LOGGER_CONFIG, useValue: { /* options */ } }]
+...
+}
+```
+
 ## Comenzando 🚀
 
 _Siguiendo estos pasos podrás tener una copia del proyecto en funcionamiento en
