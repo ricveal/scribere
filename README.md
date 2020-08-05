@@ -115,6 +115,47 @@ El diseño de `scribere` pretende crear un logger muy sencillo y agnóstico del
 framework SPA empleado. A continuación, se exponen algunas posibles
 integraciones con frameworks SPA:
 
+#### React
+
+En React, el uso de `scribere` es prácticamente inmediato, pudiendo directamente
+importarlo en aquellos componentes y utilidades donde se desee utilizar.
+
+A continuación se muestra una implementación donde la severidad se obtiene del
+_local storage_ pero es completamente opcional.
+
+```
+- src
+|-- logger
+  |-- index.js
+```
+
+`index.js`
+
+```js
+import {Logger} from 'scribere'
+
+const ReactLogger = new Logger()
+
+/* Starting Extra optional configuration */
+const severity = localStorage.getItem('LOGGER')
+let severityLevel
+if (severity === null) {
+  localStorage.setItem('LOGGER', '2')
+  severityLevel = 2
+} else {
+  severityLevel = Number(severity)
+}
+ReactLogger.severity = severityLevel
+/* Ending Extra optional configuration */
+
+export default ReactLogger
+```
+
+A partir de este punto, importando el `ReactLogger` haya donde se quiera
+registrar una anotación, sería suficiente. Esta estrategia de "pre-configurar"
+el Logger es la que se debería seguir también en el caso de querer emplear una
+configuración distinta a la por defecto.
+
 #### Vue
 
 ```
