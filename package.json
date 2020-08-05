@@ -8,7 +8,6 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
-    "deploy": "npm publish",
     "semantic-release": "semantic-release"
   },
   "husky": {
