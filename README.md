@@ -117,7 +117,13 @@ integraciones con frameworks SPA:
 
 #### Vue
 
-- src |-- main.js |-- logger |-- index.js |-- install.js
+```
+- src
+|-- main.js
+|-- logger
+  |-- index.js
+  |-- install.js
+```
 
 `index.js`
 
