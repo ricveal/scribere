@@ -209,7 +209,7 @@ import VueLogger from './logger'
 Vue.use(VueLogger)
 
 new Vue({
-  //... opciones
+  //... options
 })
 ```
 
