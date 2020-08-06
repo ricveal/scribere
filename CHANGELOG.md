@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/ricveal/scribere/compare/v1.1.4...v1.1.5) (2020-08-06)
+
+
+### Bug Fixes
+
+* update versions ([8191e2a](https://github.com/ricveal/scribere/commit/8191e2a6d0d93144347d75bdc706a4bf5610e2c5))
+
 ## [1.1.4](https://github.com/ricveal/scribere/compare/v1.1.3...v1.1.4) (2020-08-05)
 
 
