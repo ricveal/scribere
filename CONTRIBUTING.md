@@ -1,9 +1,18 @@
 # Contributing
 
-Cuando contribuyas a este repositorio, por favor, discute primero los cambios que deseas hacer a través de una incidencia.
+If you want to contribute to this project, please, discuss your proposed changes
+using an issue before sending a Pull Request.
 
-## Proceso Pull Request
+Code comments, issues, pull requests must be write in english 🇬🇧.
 
-1. Asegúrate de que cualquier instalación o dependencia adicional con la que trabajes está añadida al repositorio o eliminada si no es necesario.
-2. Actualiza el README.md con el detalle de los cambios que hayas realizado en la interfaz, incluyendo nuevas variables de entorno, puertos empleados, localización de ficheros empleados y otras configuraciones necesarias para trabajar con la aplicación.
-3. Aumenta el número de versión en los ejemplos, el `README.md` y el `package.json` de acuerdo con el esquema de versionado que empleamos: [SemVer](http://semver.org/).
+There are translations of the README in the `docs` folder. You can contribute if
+you want to add more.
+
+## Pull Request Process
+
+1. Ensure any additional dependency which you include is added to the
+   `package.json` or removed if it is not needed anymore.
+2. Update the README.md with the change details in the interface, including new
+   environment variables, ports, file locations and other configurations needed.
+3. Do not change the version manually, this is an automatic process run by the
+   CI.

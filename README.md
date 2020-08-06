@@ -5,52 +5,54 @@
 [![License](https://img.shields.io/npm/l/scribere.svg)](https://www.npmjs.com/package/scribere)
 [![Downloads](https://img.shields.io/npm/dm/scribere.svg)](https://www.npmjs.com/package/scribere)
 
-> scribĕre, escribir en latín
+🇪🇸 Lee la documentación en español
+[aquí](https://github.com/ricveal/scribere/blob/master/docs/README_es.md)
 
-Librería _core_ logger para ser empleada en proyectos con tecnología Javascript.
+> scribĕre, to write in latin
 
-## Uso
+_Core_ logger library to be used in Javascript projects.
 
-La principal interfaz de la librería es la clase Logger, que debe ser
-instanciada. No se implementa un patrón singleton, por lo que en un mismo
-contexto, puedes tener varias instancias funcionando configuradas de diferente
-forma.
+## How to use
+
+The main interface of the library is the _Logger_ class which should be
+instantiated. The singleton pattern is not implemented so, in a shared context,
+you can use multiple instances working together.
 
 ```javascript
 const logger = new Logger()
 ```
 
-El logger trabaja con 4 niveles de severidad:
+The logger works with 4 severity levels:
 
 ```javascript
 const levels = ['log', 'debug', 'warn', 'error']
 ```
 
-Cada instancia del logger cuenta con 4 métodos (uno para cada nivel de
-severidad) que permiten _loguear_ mensajes.
+Each instance has 4 methods (one per severity level) which allows you logging
+messages.
 
-Además, el logger cuenta con 3 propiedades adicionales:
+Furthermore, the logger has 3 additional properties:
 
-- `prefix`: Es un fragmento que precede el mensaje de logging. Puede ser un
-  _string_ o una función que devuelva un _string_.
-- `severity`: Indica la severidad con la que está configurada esa instancia del
-  logger. Es un número indicando a partir de que índice del array de niveles de
-  severidad se mostrarán las trazas. De esta forma:
+- `prefix`: It is the fragment before the logging message. It could be a
+  _string_ or a function which returns a _string_.
+- `severity`: Indicates the severity level of the instance of the logger. It's a
+  number indicating the index of the array of severity levels that is used as
+  minimum:
   - 0 -> 'log', 'debug', 'warn', 'error'
   - 1 -> 'debug', 'warn', 'error'
   - 2 -> 'warn', 'error'
   - 3 -> 'error'
-- `strategy`: Define realmente que es lo que va a pasar cuando se vaya a pintar
-  una traza. La idea es que puedas emplear la estrategia dada por el core o
-  crear tu propia estrategia que te permita hacer otra clase de funcionalidad,
-  por ejemplo, subir las trazas a un servidor. Es una instancia de una clase que
-  implemente la interfaz `LoggerStrategy`. Puedes ver más información sobre este
-  aspecto más adelante.
+- `strategy`: Defines how the trace is really managed. The idea is to provide
+  flexibility to use the strategy provided by the core or create a custom one
+  which allows you to cover your requirements, for example, upload the traces to
+  some remote server. It is an instance of a class which implements the
+  `LoggerStrategy` interface. There is more information about it later on the
+  text.
 
-Estas 3 propiedades pueden definirse a la hora de instanciar el logger a través
-del constructor:
+These 3 properties can be defined when the logger is instantiated, through the
+constructor:
 
-- `options`: Define el prefijo y la severidad. Por defecto es este objeto:
+- `options`: Defines the prefix and severity. By default:
 
 ```javascript
 {
@@ -59,29 +61,29 @@ del constructor:
 }
 ```
 
-- `strategy`: Define la estrategia y por defecto es `ConsoleLoggerStrategy` que
-  a grandes rasgos, saca por consola el mensaje que deseemos, ajustándolo tanto
-  a severidad como formateándolo con el prefijo: `PREFIX :: LEVEL :: data`
+- `strategy`: Defines the strategy, by default `ConsoleLoggerStrategy` which
+  mainly prints on browser console the trace, adjusting the severity and
+  formatting it with: `PREFIX :: LEVEL :: data`
 
 ```javascript
 const loggerWithOptions = new Logger(options)
 ```
 
-Estas propiedades se pueden cambiar una vez instanciado el logger ya que son
+These properties can be changed once the logger is instantiated because they are
 accesibles.
 
-### Ampliar funcionalidad
+### Custom strategies
 
-El logger emplea el patrón _Strategy_ delegando el qué hacer a la estrategia
-definida.
+The logger uses the _Strategy_ pattern, delegating what to do in the defined
+strategy.
 
-Por defecto se ofrece la estrategia `ConsoleLoggerStrategy` pero puedes escribir
-tus propias estrategias y emplearlas siguiendo tus necesidades.
+By default, the `ConsoleLoggerStrategy` strategy is offered but you can code
+your own strategies following your needs.
 
-Para ello, debes crear una clase que implemente la interfaz `LoggerStrategy` que
-obliga a implementar el método `trace` que será ejecutado cuando por los métodos
-`log`, `debug`, `warn` y `error` del logger cuando la severidad configurada
-permita pintar una traza.
+You have to create a class implementing the `LoggerStrategy` strategy which
+forces you to implement the `trace` method that will be executed by the `log`,
+`debug`, `warn` and `error` method of the logger when the configured severity
+allows the print of the trace.
 
 ```javascript
 class CustomStrategy implements LoggerStrategy {
@@ -102,26 +104,26 @@ class CustomStrategy implements LoggerStrategy {
 }
 ```
 
-Una vez creada una estrategia, deberás indicar que quieres emplearla en el
-momento de instanciar el logger:
+Once the strategy is created, you would select it in the instance process of the
+logger:
 
 ```javascript
 const loggerWithCustomStrategy = new Logger(options, new CustomStrategy())
 ```
 
-### Uso con frameworks SPA
+### Use it with SPA frameworks
 
-El diseño de `scribere` pretende crear un logger muy sencillo y agnóstico del
-framework SPA empleado. A continuación, se exponen algunas posibles
-integraciones con frameworks SPA:
+The design of `scribere` tries to create a simple logger, agnostic of the SPA
+framework used. Following, some examples of integrations with SPA frameworks are
+provided:
 
 #### React
 
-En React, el uso de `scribere` es prácticamente inmediato, pudiendo directamente
-importarlo en aquellos componentes y utilidades donde se desee utilizar.
+In React, the use of `scribere` is straightforward; you can import it directly
+in the components and utilities which would use it.
 
-A continuación se muestra una implementación donde la severidad se obtiene del
-_local storage_ pero es completamente opcional.
+Following, an implementation where the severity is retrieved from _local
+storage_ is shown, but it is completely opcional.
 
 ```
 - src
@@ -151,10 +153,9 @@ ReactLogger.severity = severityLevel
 export default ReactLogger
 ```
 
-A partir de este punto, importando el `ReactLogger` haya donde se quiera
-registrar una anotación, sería suficiente. Esta estrategia de "pre-configurar"
-el Logger es la que se debería seguir también en el caso de querer emplear una
-configuración distinta a la por defecto.
+From this point, importing `ReactLogger` where a log is required would be
+enough. This strategy of "pre-configuring" the logger should be followed when a
+configuration differ from the default one.
 
 #### Vue
 
@@ -193,9 +194,9 @@ export default function install(Vue, options = undefined) {
 }
 ```
 
-Esta implementación del `logger` sigue el patrón
-"[plugin](https://es.vuejs.org/v2/guide/plugins.html)" y por tanto, debe
-declararse antes de iniciar la aplicación:
+This implementation of the `logger` follows the
+"[plugin](https://es.vuejs.org/v2/guide/plugins.html)" pattern so the _plugin_
+should be declared before the application starts.
 
 `main.js`
 
@@ -210,7 +211,7 @@ new Vue({
 })
 ```
 
-Opcionalmente puede pasar las opciones por defecto:
+Optionally, you can use custom options:
 
 ```js
 Vue.use(VueLogger, {
@@ -220,11 +221,11 @@ Vue.use(VueLogger, {
 
 #### Angular
 
-Aunque en Angular podríamos seguir estrategias similares a otros frameworks
-(especialmente la dada para React), creo que el patrón que más se acerca a la
-filosofía "Angular" es implementar este _logger_ como un servicio.
+Although Angular could follow similar strategies to other frameworks (specially
+React), I think the _service_ pattern is the closest to the "Angular
+philosophy".
 
-Para ello:
+For that:
 
 ```ts
 import {Injectable} from '@angular/core'
@@ -258,14 +259,12 @@ export class LoggerService {
 }
 ```
 
-Aunque esta es la forma más sencilla de implementarlo, puede que veas necesario
-inyectar la opciones en vez de definirlas en el constructor. Para ello, creo que
-la mejor manera sería emplear el mecanismo de inyección de Angular y
-"providers".
+Even though this is the most simple implementation, you could want to inject the
+options instead of define them in the constructor. For that, I think the best
+way would be to use the inject mechanism of Angular and its "providers".
 
-La idea de este README no es entrar en profundidad en mecanismos específicos de
-ningún framework, en este caso Angular pero la implementación sería algo tal
-que:
+This documentation does not try to deep on any specific implementation for any
+framework but, as reference, the implementation should be something similar to:
 
 ```ts
 export const LOGGER_CONFIG = new InjectionToken<LoggerOptions>('app.logger');
@@ -293,72 +292,70 @@ providers: [LoggerService, { provide: LOGGER_CONFIG, useValue: { /* options */ }
 }
 ```
 
-## Comenzando 🚀
+## Starting 🚀
 
-_Siguiendo estos pasos podrás tener una copia del proyecto en funcionamiento en
-tu máquina local._
+_Following these steps you will have a copy of the project working on your local
+machine._
 
-Mira **Deployment** para conocer como desplegar el proyecto.
+Check **Deployment** to know how to deploy the project.
 
-### Pre-requisitos 📋
+### Pre-requirements 📋
 
-Necesitarás disponer de Node (v10.15.3) y npm (v6.4.1) instalados así como la
-utilidad [Yarn](https://yarnpkg.com/lang/en/). Versiones superiores pueden
-funcionar pero no ha sido probado.
+You will need Node (v10.15.3) and npm (v6.4.1) installed and
+[Yarn](https://yarnpkg.com/lang/en/). Upper versions could work but they aren't
+tested.
 
-### Instalación 🔧
+### Install 🔧
 
-La instalación es muy sencilla. Tan sólo tendrás que ejecutar sobre la raíz del
-proyecto:
+In the root of the project, you should execute:
 
 ```
 yarn
 ```
 
-## Ejecutando las pruebas ⚙️
+## Testing ⚙️
 
 ```
 yarn test
 ```
 
-Por debajo, estarás ejecutando [jest](https://jestjs.io/) por lo que puedes
-añadir los parámetros que desees.
+Under the hood, you will be executing [jest](https://jestjs.io/) so any
+parameter could be added following its documentation.
 
-### Y las pruebas de estilo de codificación ⌨️
+### Linting ⌨️
 
-Utilizamos [eslint](https://eslint.org/) para asegurar la calidad del código y
-que sea homogéneo entre diferentes desarrolladores.
+The project is using [eslint](https://eslint.org/) to ensure the code quality as
+well as the standardization of code between developers.
 
 ```
 yarn lint
 ```
 
-Si deseas que la herramienta intente corregir los errores que pueda de forma
-automática, puedes ejecutar:
+You can try to fix _lint_ errors automatically using:
 
 ```
 yarn lint:fix
 ```
 
-## Construido con 🛠️
+## Built with 🛠️
 
 - [Typescript](https://www.typescriptlang.org/)
 - [Jest](https://jestjs.io/)
 - [Eslint](https://eslint.org/)
 
-## Contribuyendo 🖇️
+## Contributing 🖇️
 
-Por favor lee el
+Please, read
 [CONTRIBUTING.md](https://github.com/ricveal/scribere/blob/master/CONTRIBUTING.md)
-para detalles de nuestro código de conducta, y el proceso para enviarnos pull
+which provides details about the code of conduct and the process to include pull
 requests.
 
-## Versionado 📌
+## Versioning 📌
 
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
-disponibles, mira los
-[tags en este repositorio](https://github.com/ricveal/scribere/tags).
+The project uses [SemVer](http://semver.org/) for versioning. You can check all
+available versions in the
+[tags of this repository](https://github.com/ricveal/scribere/tags).
 
-## Autores ✒️
+## Authors ✒️
 
 - **Ricardo Vega Alonso** - [ricveal](https://github.com/ricveal)
